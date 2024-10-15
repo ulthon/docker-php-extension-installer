@@ -4,9 +4,9 @@
 #
 # Copyright (c) Michele Locati, 2018-2023
 #
-# Source: https://github.com/mlocati/docker-php-extension-installer
+# Source: https://ghp.ci/mlocati/docker-php-extension-installer
 #
-# License: MIT - see https://github.com/mlocati/docker-php-extension-installer/blob/master/LICENSE
+# License: MIT - see https://ghp.ci/mlocati/docker-php-extension-installer/blob/master/LICENSE
 
 # Let's set a sane environment
 set -o errexit
@@ -41,12 +41,12 @@ if test "$IPE_VERSION" = master && test "${CI:-}" != true; then
 # You are using an unsupported method to get install-php-extensions!                                        #
 #                                                                                                           #
 # Please update the way you fetch it. Read the instructions at                                              #
-# https://github.com/mlocati/docker-php-extension-installer#usage                                           #
+# https://ghp.ci/mlocati/docker-php-extension-installer#usage                                           #
 #                                                                                                           #
 # For example, if you get this script by fetching                                                           #
 # https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions    #
 # replace it with                                                                                           #
-# https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions #
+# https://ghp.ci/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions #
 #                                                                                                           #
 # Sleeping for a while so you get bored of this and act ;)                                                  #
 #                                                                                                           #
@@ -1978,8 +1978,8 @@ installRequiredPackages() {
 		alpine)
 			apk add $IPE_APK_FLAGS $PACKAGES_PERSISTENT_NEW $PACKAGES_VOLATILE
 			# https://gitlab.alpinelinux.org/alpine/aports/-/issues/12763#note_172090
-			# https://github.com/mlocati/docker-php-extension-installer/issues/385
-			# https://github.com/mlocati/docker-php-extension-installer/issues/537#issuecomment-1078748882
+			# https://ghp.ci/mlocati/docker-php-extension-installer/issues/385
+			# https://ghp.ci/mlocati/docker-php-extension-installer/issues/537#issuecomment-1078748882
 			for installRequiredPackages_item in wget; do
 				if test -n "$(expandInstalledSystemPackageName "$installRequiredPackages_item")"; then
 					apk add --upgrade "$installRequiredPackages_item"
@@ -2236,7 +2236,7 @@ isLibdav1dInstalled() {
 # Install libdav1d
 installLibdav1d() {
 	printf 'Installing libdav1d\n'
-	installLibdav1d_dir="$(getPackageSource https://github.com/videolan/dav1d/archive/refs/tags/1.3.0.tar.gz)"
+	installLibdav1d_dir="$(getPackageSource https://ghp.ci/videolan/dav1d/archive/refs/tags/1.3.0.tar.gz)"
 	mkdir -- "$installLibdav1d_dir/build"
 	cd -- "$installLibdav1d_dir/build"
 	meson --buildtype release -Dprefix=/usr ..
@@ -2328,7 +2328,7 @@ isLibDatrieInstalled() {
 # Install libdatrie
 installLibDatrie() {
 	printf 'Installing libdatrie\n'
-	installLibDatrie_src="$(getPackageSource https://github.com/tlwg/libdatrie/releases/download/v0.2.13/libdatrie-0.2.13.tar.xz)"
+	installLibDatrie_src="$(getPackageSource https://ghp.ci/tlwg/libdatrie/releases/download/v0.2.13/libdatrie-0.2.13.tar.xz)"
 	cd -- "$installLibDatrie_src"
 	./configure
 	make -j$(getProcessorCount)
@@ -2355,7 +2355,7 @@ isLibThaiInstalled() {
 # Install libdatrie
 installLibThai() {
 	printf 'Installing libthai\n'
-	installLibThai_src="$(getPackageSource https://github.com/tlwg/libthai/releases/download/v0.1.29/libthai-0.1.29.tar.xz)"
+	installLibThai_src="$(getPackageSource https://ghp.ci/tlwg/libthai/releases/download/v0.1.29/libthai-0.1.29.tar.xz)"
 	cd -- "$installLibThai_src"
 	./configure
 	make -j$(getProcessorCount)
@@ -2372,7 +2372,7 @@ isLibTommathInstalled() {
 
 installLibTommath() {
 	printf 'Installing libtommath\n'
-	installLibTommath_src="$(getPackageSource https://github.com/libtom/libtommath/releases/download/v1.3.0/ltm-1.3.0.tar.xz)"
+	installLibTommath_src="$(getPackageSource https://ghp.ci/libtom/libtommath/releases/download/v1.3.0/ltm-1.3.0.tar.xz)"
 	mkdir -p "$installLibTommath_src/build"
 	cd -- "$installLibTommath_src/build"
 	CFLAGS='-fPIC' cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -2390,7 +2390,7 @@ isLibTomcryptInstalled() {
 
 installLibTomcrypt() {
 	printf 'Installing libtomcrypt\n'
-	installLibTomcrypt_src="$(getPackageSource https://github.com/libtom/libtomcrypt/releases/download/v1.18.2/crypt-1.18.2.tar.xz)"
+	installLibTomcrypt_src="$(getPackageSource https://ghp.ci/libtom/libtomcrypt/releases/download/v1.18.2/crypt-1.18.2.tar.xz)"
 	cd -- "$installLibTomcrypt_src"
 	CFLAGS='-fPIC' make -j$(getProcessorCount)
 	make install
@@ -2409,7 +2409,7 @@ isFirebirdInstalled() {
 installFirebird() {
 	printf 'Installing firebird\n'
 	if test $PHP_MAJMIN_VERSION -ge 804; then
-		installFirebird_src="$(getPackageSource https://github.com/FirebirdSQL/firebird/releases/download/v5.0.1/Firebird-5.0.1.1469-0-source.tar.xz)"
+		installFirebird_src="$(getPackageSource https://ghp.ci/FirebirdSQL/firebird/releases/download/v5.0.1/Firebird-5.0.1.1469-0-source.tar.xz)"
 		cd -- "$installFirebird_src"
 		./configure --enable-client-only
 		make -j$(getProcessorCount)
@@ -2417,7 +2417,7 @@ installFirebird() {
 		cp -Rd gen/Release/firebird/lib/* /usr/lib
 		cd - >/dev/null
 	else
-		mv "$(getPackageSource https://github.com/FirebirdSQL/firebird/releases/download/R2_5_9/Firebird-2.5.9.27139-0.tar.bz2)" /tmp/src/firebird
+		mv "$(getPackageSource https://ghp.ci/FirebirdSQL/firebird/releases/download/R2_5_9/Firebird-2.5.9.27139-0.tar.bz2)" /tmp/src/firebird
 		cd /tmp/src/firebird
 		# Patch rwlock.h (this has been fixed in later release of firebird 3.x)
 		sed -i '194s/.*/#if 0/' src/common/classes/rwlock.h
@@ -2440,7 +2440,7 @@ isLibXCryptInstalled() {
 installLibXCrypt() {
 	printf 'Installing libxcrypt\n'
 	installLibXCrypt_version=4.4.36
-	installLibXCrypt_src="$(getPackageSource "https://github.com/besser82/libxcrypt/releases/download/v$installLibXCrypt_version/libxcrypt-$installLibXCrypt_version.tar.xz")"
+	installLibXCrypt_src="$(getPackageSource "https://ghp.ci/besser82/libxcrypt/releases/download/v$installLibXCrypt_version/libxcrypt-$installLibXCrypt_version.tar.xz")"
 	cd -- "$installLibXCrypt_src"
 	./configure --prefix /usr
 	make -j$(getProcessorCount)
@@ -2572,7 +2572,7 @@ installCargo() {
 	printf '# Installing cargo\n'
 	case "$DISTRO" in
 		alpine)
-			# see https://github.com/hyperledger/indy-vdr/issues/69#issuecomment-998104850
+			# see https://ghp.ci/hyperledger/indy-vdr/issues/69#issuecomment-998104850
 			export RUSTFLAGS='-C target-feature=-crt-static'
 			;;
 	esac
@@ -2705,7 +2705,7 @@ EOF
 			fi
 			if test $installBundledModule_tmp -eq 1 && ! test -f /usr/lib/libenchant.so && ! test -f /usr/local/lib/libenchant.so; then
 				# We need to install libenchant1 from source
-				installBundledModule_src="$(getPackageSource https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz)"
+				installBundledModule_src="$(getPackageSource https://ghp.ci/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz)"
 				cd -- "$installBundledModule_src"
 				./configure
 				make -j$(getProcessorCount)
@@ -3000,7 +3000,7 @@ installRemoteModule() {
 			installRemoteModule_ini_extra="$(printf '%sblackfire.agent_socket=tcp://blackfire:8307\n' "$installRemoteModule_ini_extra")"
 			;;
 		cassandra)
-			installRemoteModule_src="$(getPackageSource https://github.com/nano-interactive/ext-cassandra/tarball/1cf12c5ce49ed43a2c449bee4b7b23ce02a37bf0)"
+			installRemoteModule_src="$(getPackageSource https://ghp.ci/nano-interactive/ext-cassandra/tarball/1cf12c5ce49ed43a2c449bee4b7b23ce02a37bf0)"
 			cd "$installRemoteModule_src/ext"
 			phpize
 			./configure
@@ -3020,7 +3020,7 @@ installRemoteModule() {
 				else
 					installRemoteModule_tmp=0.31.1
 				fi
-				cd "$(getPackageSource https://github.com/commonmark/cmark/archive/$installRemoteModule_tmp.tar.gz)"
+				cd "$(getPackageSource https://ghp.ci/commonmark/cmark/archive/$installRemoteModule_tmp.tar.gz)"
 				make -s -j$(getProcessorCount) cmake_build
 				make -s -j$(getProcessorCount) install
 				cd - >/dev/null
@@ -3174,7 +3174,7 @@ installRemoteModule() {
 			case "$DISTRO" in
 				alpine)
 					if ! test -e /usr/local/include/libgearman/gearman.h || ! test -e /usr/local/lib/libgearman.so; then
-						installRemoteModule_src="$(getPackageSource https://github.com/gearman/gearmand/releases/download/1.1.21/gearmand-1.1.21.tar.gz)"
+						installRemoteModule_src="$(getPackageSource https://ghp.ci/gearman/gearmand/releases/download/1.1.21/gearmand-1.1.21.tar.gz)"
 						cd -- "$installRemoteModule_src"
 						./configure
 						make -j$(getProcessorCount) install-binPROGRAMS
@@ -3291,7 +3291,7 @@ installRemoteModule() {
 			if ! test -f /usr/local/lib/libionc.so || ! test -f /usr/local/include/ionc/ion.h; then
 				echo 'Installing ion-c... '
 				installRemoteModule_src="$(mktemp -p /tmp/src -d)"
-				git clone -q -c advice.detachedHead=false --depth 1 --branch v1.1.3 https://github.com/amzn/ion-c.git "$installRemoteModule_src/ion"
+				git clone -q -c advice.detachedHead=false --depth 1 --branch v1.1.3 https://ghp.ci/amzn/ion-c.git "$installRemoteModule_src/ion"
 				(
 					cd "$installRemoteModule_src/ion"
 					git submodule init -q
@@ -3336,7 +3336,7 @@ installRemoteModule() {
 				if test -z "$installRemoteModule_version"; then
 					installRemoteModule_version=0.4.3
 				fi
-				installRemoteModule_src="$(getPackageSource https://github.com/kjdev/php-ext-lz4/archive/refs/tags/$installRemoteModule_version.tar.gz)"
+				installRemoteModule_src="$(getPackageSource https://ghp.ci/kjdev/php-ext-lz4/archive/refs/tags/$installRemoteModule_version.tar.gz)"
 				cd "$installRemoteModule_src"
 				phpize
 				./configure --with-lz4-includedir=/usr
@@ -3413,7 +3413,7 @@ installRemoteModule() {
 				# Enable memcached json serializer support
 				addConfigureOption 'enable-memcached-json' 'yes'
 				# Enable memcached protocol support
-				addConfigureOption 'enable-memcached-protocol' 'no' # https://github.com/php-memcached-dev/php-memcached/issues/418#issuecomment-449587972
+				addConfigureOption 'enable-memcached-protocol' 'no' # https://ghp.ci/php-memcached-dev/php-memcached/issues/418#issuecomment-449587972
 				# Enable memcached sasl support
 				addConfigureOption 'enable-memcached-sasl' 'yes'
 				# Enable memcached session handler support
@@ -3748,7 +3748,7 @@ installRemoteModule() {
 					installRemoteModule_zstdVersion=1.4.4
 					installRemoteModule_zstdVersionMajor=$(echo $installRemoteModule_zstdVersion | cut -d. -f1)
 					rm -rf /tmp/src/zstd
-					mv "$(getPackageSource https://github.com/facebook/zstd/releases/download/v$installRemoteModule_zstdVersion/zstd-$installRemoteModule_zstdVersion.tar.gz)" /tmp/src/zstd
+					mv "$(getPackageSource https://ghp.ci/facebook/zstd/releases/download/v$installRemoteModule_zstdVersion/zstd-$installRemoteModule_zstdVersion.tar.gz)" /tmp/src/zstd
 					cd /tmp/src/zstd
 					make V=0 -j$(getProcessorCount) lib
 					cp -f lib/libzstd.so "/usr/lib/$TARGET_TRIPLET/libzstd.so.$installRemoteModule_zstdVersion"
@@ -3864,7 +3864,7 @@ installRemoteModule() {
 				if test -z "$installRemoteModule_version"; then
 					installRemoteModule_version=0.2.1
 				fi
-				installRemoteModule_src="$(getPackageSource https://github.com/kjdev/php-ext-snappy/archive/refs/tags/$installRemoteModule_version.tar.gz)"
+				installRemoteModule_src="$(getPackageSource https://ghp.ci/kjdev/php-ext-snappy/archive/refs/tags/$installRemoteModule_version.tar.gz)"
 				cd "$installRemoteModule_src"
 				phpize
 				./configure --with-snappy-includedir=/usr
@@ -3994,7 +3994,7 @@ installRemoteModule() {
 				elif test $PHP_MAJMIN_VERSION -le 704; then
 					installRemoteModule_version=4.8.11
 				elif test $PHP_BITS -eq 32; then
-					# See https://github.com/swoole/swoole-src/issues/5198#issuecomment-1820162178
+					# See https://ghp.ci/swoole/swoole-src/issues/5198#issuecomment-1820162178
 					installRemoteModule_version="$(resolvePHPModuleVersion "$installRemoteModule_module" '^5.0')"
 				else
 					case "$DISTRO" in
@@ -4024,13 +4024,13 @@ installRemoteModule() {
 			case "$DISTRO_VERSION" in
 				alpine@3.7 | alpine@3.8)
 					if test $(compareVersions "$installRemoteModule_version" 4.6.0) -lt 0; then
-						# see https://github.com/swoole/swoole-src/issues/3934
+						# see https://ghp.ci/swoole/swoole-src/issues/3934
 						installRemoteModule_openssl=no
 					fi
 					;;
 			esac
 			if test $PHP_MAJMIN_VERSION -ge 800; then
-				# see https://github.com/swoole/swoole-src/issues/5365
+				# see https://ghp.ci/swoole/swoole-src/issues/5365
 				installRemoteModule_curl=no
 			else
 				installRemoteModule_curl=yes
@@ -4259,7 +4259,7 @@ installRemoteModule() {
 			fi
 			if test -z "$installRemoteModule_path"; then
 				installRemoteModule_tmp="$(mktemp -p /tmp/src -d)"
-				git clone --depth=1 --recurse-submodules https://github.com/yaroslavche/phptdlib.git "$installRemoteModule_tmp"
+				git clone --depth=1 --recurse-submodules https://ghp.ci/yaroslavche/phptdlib.git "$installRemoteModule_tmp"
 				mkdir "$installRemoteModule_tmp/build"
 				cd "$installRemoteModule_tmp/build"
 				cmake -D USE_SHARED_PHPCPP:BOOL=ON ..
@@ -4395,7 +4395,7 @@ installRemoteModule() {
 				if test $PHP_MAJMIN_VERSION -le 702; then
 					installRemoteModule_version=1.13.0
 				else
-					installRemoteModule_version="$(git -c versionsort.suffix=- ls-remote --tags --refs --quiet --exit-code --sort=version:refname https://github.com/wikimedia/mediawiki-php-wikidiff2.git 'refs/tags/*.*.*' | tail -1 | cut -d/ -f3)"
+					installRemoteModule_version="$(git -c versionsort.suffix=- ls-remote --tags --refs --quiet --exit-code --sort=version:refname https://ghp.ci/wikimedia/mediawiki-php-wikidiff2.git 'refs/tags/*.*.*' | tail -1 | cut -d/ -f3)"
 				fi
 			fi
 			installRemoteModule_src="$(getPackageSource "https://codeload.github.com/wikimedia/mediawiki-php-wikidiff2/tar.gz/refs/tags/$installRemoteModule_version")"
@@ -4517,7 +4517,7 @@ installRemoteModule() {
 			;;
 		zmq)
 			if test -z "$installRemoteModule_version"; then
-				installRemoteModule_src="$(getPackageSource https://github.com/zeromq/php-zmq/tarball/master)"
+				installRemoteModule_src="$(getPackageSource https://ghp.ci/zeromq/php-zmq/tarball/master)"
 				cd "$installRemoteModule_src"
 				phpize
 				./configure
@@ -4640,7 +4640,7 @@ configureInstaller() {
 			if false && anyStringInList '' "$PHP_MODULES_TO_INSTALL"; then
 				USE_PICKLE=2
 			else
-				curl -sSLf https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar -o /tmp/pickle
+				curl -sSLf https://ghp.ci/FriendsOfPHP/pickle/releases/latest/download/pickle.phar -o /tmp/pickle
 				chmod +x /tmp/pickle
 				USE_PICKLE=1
 			fi
@@ -4664,7 +4664,7 @@ buildPickle() {
 	buildPickle_tempDir="$(mktemp -p /tmp/src -d)"
 	cd -- "$buildPickle_tempDir"
 	printf 'Downloading... '
-	git clone --quiet --depth 1 https://github.com/FriendsOfPHP/pickle.git .
+	git clone --quiet --depth 1 https://ghp.ci/FriendsOfPHP/pickle.git .
 	git tag 0.7.0
 	printf 'done.\n'
 	printf 'Installing composer... '
